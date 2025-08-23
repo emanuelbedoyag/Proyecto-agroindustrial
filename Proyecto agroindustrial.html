@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyecto Maracuyá — Gomitas Relajantes & Ambientador/Repelente</title>
+  <meta name="description" content="Proyecto agroindustrial: gomitas relajantes sin azúcar y ambientador/repelente con aprovechamiento total del maracuyá. Presentación para jurado." />
+  <!-- 
+    =========================================================
+    Diseño: Presentación web para jurado — amigable, fresca y profesional
+    Notas de estilo:
+      - Paleta cálida (maracuyá): amarillos, naranjas, verdes lima.
+      - Tipografía redonda y fácil (Poppins).
+      - Enfoque visual: tarjetas, iconos, progresos, bloques con color.
+      - Lenguaje simple: sin tecnicismos innecesarios.
+      - Estructura larga (500+ líneas) lista para imprimir y mostrar.
+    =========================================================
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fff9f0;            /* fondo crema */
+      --paper:#ffffff;          /* tarjetas */
+      --text:#2a2a2a;           /* texto principal */
+      --muted:#6c6c6c;          /* texto secundario */
+      --brand:#ffcb4c;          /* amarillo maracuyá */
+      --accent:#ffa45b;         /* naranja suave */
+      --lime:#8bd36c;           /* verde lima */
+      --violet:#7a5cff;         /* violeta sutil para contraste */
+      --sky:#5cc8ff;            /* azul claridad */
+      --chip:#fff3d3;           /* etiqueta suave */
+      --shadow: 0 10px 35px rgba(0,0,0,.08);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --stroke: 1px solid rgba(0,0,0,.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background: radial-gradient(1000px 600px at 85% -10%, rgba(255,203,76,.22), transparent 50%),
+                                 radial-gradient(900px 800px at -5% 105%, rgba(255,164,91,.16), transparent 48%),
+                                 var(--bg);
+      color:var(--text); font: 16px/1.7 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    /* -----------------------------
+       LAYOUT BÁSICO
+    ------------------------------*/
+    .wrap{max-width:1180px; margin:auto; padding:24px 18px 60px}
+
+    .topbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px);
+      background:linear-gradient(180deg, rgba(255,249,240,.9), rgba(255,249,240,.7)); border-bottom:var(--stroke)}
+    .topbar-inner{max-width:1180px; margin:auto; display:flex; align-items:center; gap:14px; padding:10px 16px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:46px; height:46px; border-radius:14px; display:grid; place-items:center; box-shadow:var(--shadow);
+      background: conic-gradient(from 210deg, #fff3d3, var(--brand) 35%, #ffb300 60%, var(--brand) 85%, #fff3d3);
+      color:#1a1400; font-weight:900; font-size:22px}
+    .brand h1{margin:0; font-weight:800; font-size:clamp(18px,4.2vw,26px)}
+    .nav{margin-left:auto; display:flex; gap:10px; flex-wrap:wrap}
+    .nav a{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; text-decoration:none; color:#2a2a2a; background:#fff; border:var(--stroke); box-shadow:0 4px 10px rgba(0,0,0,.05)}
+    .nav a:hover{transform:translateY(-1px)}
+
+    /* -----------------------------
+       HERO
+    ------------------------------*/
+    .hero{display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; margin-top:16px}
+    .card{background:var(--paper); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:var(--stroke)}
+    .hero h2{margin:6px 0 12px; font-size:clamp(22px,4.6vw,40px); line-height:1.15}
+    .hero p{color:var(--muted)}
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .chip{background:var(--chip); border:var(--stroke); padding:6px 10px; border-radius:999px; font-weight:700}
+    .kpis{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:14px}
+    .kpi{background:#fff8e6; border:var(--stroke); border-radius:16px; padding:12px; text-align:center}
+    .kpi strong{font-size:1.35rem}
+
+    .side{display:grid; gap:12px}
+    .highlight{display:grid; grid-template-columns: 56px 1fr; gap:12px; align-items:center}
+    .ico{width:56px; height:56px; border-radius:16px; display:grid; place-items:center; font-size:26px; background:#fff7e0; border:var(--stroke)}
+    .highlight h3{margin:0}
+    .highlight p{margin:2px 0 0; color:var(--muted)}
+
+    /* -----------------------------
+       TABS — Productos
+    ------------------------------*/
+    .tabs{margin-top:28px}
+    .tab-head{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+    .tab-btn{--c:var(--brand); border:none; background:#fff; color:#2a2a2a; padding:12px 18px; border-radius:999px; cursor:pointer; font-weight:800; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.06); border:var(--stroke)}
+    .tab-btn[aria-selected="true"]{background:linear-gradient(180deg, #fff7d8, #fff); box-shadow: inset 0 0 0 2px var(--c), 0 10px 24px rgba(0,0,0,.08)}
+
+    .tab-panels{margin-top:16px}
+    .panel{display:none; animation:fade .25s ease}
+    .panel[aria-hidden="false"]{display:block}
+    @keyframes fade{from{opacity:.3; transform:translateY(4px)} to{opacity:1; transform:none}}
+
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+    .ingredients{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px}
+    .row{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 12px; border-radius:16px; background:#fff6e5; border:var(--stroke)}
+    .qty{font-weight:800}
+    .unit{opacity:.75}
+
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-weight:800}
+    .lim{background:#ff5575; color:#fff}
+    .exc{background:#4ad3a2; color:#fff}
+
+    /* -----------------------------
+       SECCIONES EXTRA (amigables)
+    ------------------------------*/
+    .section-title{margin:6px 0 12px; font-size:clamp(20px,3.5vw,28px)}
+    .friendly{display:grid; grid-template-columns: repeat(3,1fr); gap:14px}
+    .friendly .mini{background:#eefbf0; border:var(--stroke); border-radius:16px; padding:14px}
+    .friendly .mini h4{margin:0 0 6px}
+    .friendly .mini p{margin:0; color:var(--muted)}
+
+    .steps{counter-reset: step; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px}
+    .step{position:relative; background:#f1f8ff; border:var(--stroke); border-radius:18px; padding:16px}
+    .step:before{counter-increment: step; content: counter(step); position:absolute; top:-12px; left:-12px; width:36px; height:36px; border-radius:50%; display:grid; place-items:center; background:var(--sky); color:#00324a; font-weight:800; box-shadow:var(--shadow)}
+
+    .gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+    .mock{background:#fff; border:var(--stroke); border-radius:18px; height:160px; display:grid; place-items:center; color:#999}
+
+    .faq details{background:#fff; border:var(--stroke); border-radius:16px; padding:12px 14px}
+    .faq details+details{margin-top:10px}
+    .faq summary{cursor:pointer; font-weight:800}
+
+    /* -----------------------------
+       BANNERS DE COLOR
+    ------------------------------*/
+    .band{margin:24px 0; border-radius:22px; padding:18px; display:grid; grid-template-columns: 1fr 1.2fr; gap:14px; align-items:center; border:var(--stroke)}
+    .band.sust{background:linear-gradient(135deg, #f2ffe9, #ffffff)}
+    .band.result{background:linear-gradient(135deg, #fff3e0, #ffffff)}
+    .band .cta{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{border:none; border-radius:999px; padding:10px 14px; font-weight:800; cursor:pointer}
+    .btn.brand{background:var(--brand)}
+    .btn.ghost{background:#fff; border:var(--stroke)}
+
+    /* -----------------------------
+       PIE DE PÁGINA
+    ------------------------------*/
+    footer{margin-top:28px; color:var(--muted); text-align:center}
+
+    /* -----------------------------
+       RESPONSIVE
+    ------------------------------*/
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .band{grid-template-columns:1fr}
+    }
+
+    /* -----------------------------
+       PRINT
+    ------------------------------*/
+    @media print{
+      body{background:#fff}
+      .topbar, .nav, .btn, .tab-head{display:none !important}
+      .card{box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- ==========================================
+       TOPBAR
+  =========================================== -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><div class="logo" aria-hidden="true">🥭</div><h1>Proyecto Maracuyá</h1></div>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#resumen">Resumen</a>
+        <a href="#productos">Productos</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#galeria">Galería</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- ==========================================
+         HERO / RESUMEN
+    =========================================== -->
+    <section id="resumen" class="hero">
+      <article class="card">
+        <h2>Gomitas relajantes & Ambientador/Repelente</h2>
+        <p>
+          Presentamos un proyecto sencillo y con propósito: un <strong>alimento amigable</strong> para apoyar la relajación
+          y un <strong>ambientador natural</strong> que aprovecha la cáscara. Todo nace del maracuyá, con un uso completo de la fruta.
+        </p>
+        <div class="chips">
+          <span class="chip">Sin azúcar extra</span>
+          <span class="chip">Con valeriana</span>
+          <span class="chip">Economía circular</span>
+          <span class="chip">Aroma + repelencia</span>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><div class="dim">Fruta usada</div><strong>100%</strong><div class="dim">Pulpa y cáscara</div></div>
+          <div class="kpi"><div class="dim">Presentaciones</div><strong>2</strong><div class="dim">Alimento + hogar</div></div>
+          <div class="kpi"><div class="dim">Equipo</div><strong>2</strong><div class="dim">Emanuel & Daniel</div></div>
+        </div>
+      </article>
+      <aside class="side">
+        <div class="card highlight">
+          <div class="ico">🍬</div>
+          <div>
+            <h3>Gomitas relajantes</h3>
+            <p>Maracuyá colado, gelatina, un toque de miel y valeriana. Textura suave y sabor tropical.</p>
+          </div>
+        </div>
+        <div class="card highlight">
+          <div class="ico">🌿</div>
+          <div>
+            <h3>Ambientador/Repelente</h3>
+            <p>Alcohol, cáscara de maracuyá y citronela. Aroma fresco y apoyo contra mosquitos.</p>
+          </div>
+        </div>
+        <div class="card highlight">
+          <div class="ico">♻️</div>
+          <div>
+            <h3>Aprovechamiento total</h3>
+            <p>La pulpa va a las gomitas y la cáscara se transforma en aroma. Menos desperdicio.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         TABS PRODUCTOS
+    =========================================== -->
+    <section id="productos" class="tabs">
+      <div class="tab-head" role="tablist" aria-label="Productos">
+        <button class="tab-btn" role="tab" data-tab="food" aria-selected="true" aria-controls="panel-food">🍬 Gomitas relajantes</button>
+        <button class="tab-btn" role="tab" data-tab="nonfood" aria-selected="false" aria-controls="panel-nonfood" style="--c:var(--accent)">🌿 Ambientador/Repelente</button>
+      </div>
+
+      <div class="tab-panels">
+        <!-- PANEL: ALIMENTICIO -->
+        <section id="panel-food" class="panel" aria-hidden="false" role="tabpanel">
+          <div class="grid">
+            <article class="card" style="grid-column: span 7">
+              <h3 class="section-title">Ingredientes (lote presentado)</h3>
+              <div class="ingredients" role="list">
+                <div class="row" role="listitem"><div>Maracuyá (colado)</div><div class="qty">132 <span class="unit">g</span></div></div>
+                <div class="row" role="listitem"><div>Agua potable</div><div class="qty">60 <span class="unit">ml</span></div></div>
+                <div class="row" role="listitem"><div>Gelatina sin sabor</div><div class="qty">24 <span class="unit">g</span></div></div>
+                <div class="row" role="listitem"><div>Miel</div><div class="qty">12 <span class="unit">g</span></div></div>
+                <div class="row" role="listitem"><div>Valeriana</div><div class="qty">30 <span class="unit">gotas</span> <span class="dim">(≈15 ml)</span></div></div>
+              </div>
+            </article>
+
+            <aside class="card" style="grid-column: span 5">
+              <h3 class="section-title">Notas del lote</h3>
+              <p class="badge lim">Reactivo límite: Maracuyá — se usó toda la pulpa</p>
+              <p class="badge exc">Reactivo en exceso: Miel — sobró del tarro</p>
+              <div class="friendly" style="margin-top:10px">
+                <div class="mini"><h4>Textura</h4><p>Gel firme, agradable al morder.</p></div>
+                <div class="mini"><h4>Sabor</h4><p>Tropical, con dulzor moderado.</p></div>
+                <div class="mini"><h4>Uso</h4><p>Snack pequeño en la tarde o noche.</p></div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <h3 class="section-title">Pasos (rápidos)</h3>
+            <div class="steps">
+              <div class="step"><strong>1. Mezcla base</strong><p>Calienta el jugo con el agua; disuelve la gelatina sin hervir.</p></div>
+              <div class="step"><strong>2. Dulzura</strong><p>Agrega la miel y mezcla hasta integrar.</p></div>
+              <div class="step"><strong>3. Toque relajante</strong><p>Cuando esté tibio, añade las gotas de valeriana y revuelve.</p></div>
+              <div class="step"><strong>4. Moldeado</strong><p>Vierte en moldes y refrigera hasta cuajar.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL: NO ALIMENTICIO -->
+        <section id="panel-nonfood" class="panel" aria-hidden="true" role="tabpanel">
+          <div class="grid">
+            <article class="card" style="grid-column: span 7">
+              <h3 class="section-title">Ingredientes (ambientador)</h3>
+              <div class="ingredients" role="list">
+                <div class="row" role="listitem"><div>Alcohol etílico</div><div class="qty">100 <span class="unit">g</span></div></div>
+                <div class="row" role="listitem"><div>Glicerina</div><div class="qty">5 <span class="unit">g</span></div></div>
+                <div class="row" role="listitem"><div>Cáscara de maracuyá</div><div class="qty">100 <span class="unit">g</span></div></div>
+                <div class="row" role="listitem"><div>Citronela (ramas)</div><div class="qty">2 <span class="unit">ramas</span></div></div>
+                <div class="row" role="listitem"><div>Agua</div><div class="qty">100 <span class="unit">ml</span></div></div>
+              </div>
+            </article>
+
+            <aside class="card" style="grid-column: span 5">
+              <h3 class="section-title">Notas del lote</h3>
+              <p class="badge lim">Reactivo límite: Citronela — se usaron las 2 ramas</p>
+              <p class="badge exc">Reactivo en exceso: Cáscara — sobró casi la mitad</p>
+              <div class="friendly" style="margin-top:10px">
+                <div class="mini"><h4>Aroma</h4><p>Maracuyá fresco con notas cítricas.</p></div>
+                <div class="mini"><h4>Uso</h4><p>Ambientes, cortinas, telas (a 30 cm).</p></div>
+                <div class="mini"><h4>Cuidados</h4><p>No ingerir. Mantener fuera del alcance de niños y mascotas.</p></div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <h3 class="section-title">Pasos (rápidos)</h3>
+            <div class="steps">
+              <div class="step"><strong>1. Macerado</strong><p>Trocea cáscara y cúbrela con alcohol. Guarda 5 días, en oscuro.</p></div>
+              <div class="step"><strong>2. Filtrado</strong><p>Cuela el macerado para obtener un líquido limpio.</p></div>
+              <div class="step"><strong>3. Mezcla</strong><p>Agrega agua, glicerina y citronela. Mezcla.</p></div>
+              <div class="step"><strong>4. Envasado</strong><p>Botella con atomizador. Agita antes de usar.</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         BANNER: SUSTENTABILIDAD
+    =========================================== -->
+    <section class="band sust" aria-label="Sustentabilidad">
+      <div>
+        <h3 class="section-title">Sostenibilidad a simple vista</h3>
+        <p class="dim">La pulpa alimenta, la cáscara perfuma. Una fruta, dos soluciones. Menos basura, más valor.</p>
+        <div class="cta" style="margin-top:8px">
+          <button class="btn brand" onclick="window.print()">Imprimir ficha</button>
+          <button class="btn ghost" onclick="window.scrollTo({top:0,behavior:'smooth'})">Volver arriba</button>
+        </div>
+      </div>
+      <div>
+        <div class="friendly">
+          <div class="mini"><h4>Residuo 0</h4><p>La cáscara se aprovecha.</p></div>
+          <div class="mini"><h4>Económico</h4><p>Ingredientes locales y accesibles.</p></div>
+          <div class="mini"><h4>Presentable</h4><p>Dos productos listos para mostrar.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PROCESO EXTENDIDO
+    =========================================== -->
+    <section id="proceso" class="card">
+      <h3 class="section-title">Proceso completo (resumen visual)</h3>
+      <div class="steps">
+        <div class="step"><strong>Selección</strong><p>Elegimos maracuyás frescos, aromáticos y de buen color.</p></div>
+        <div class="step"><strong>Limpieza</strong><p>Lavado y desinfección suave de la fruta.</p></div>
+        <div class="step"><strong>Separación</strong><p>Pulpa para gomitas, cáscara para el macerado.</p></div>
+        <div class="step"><strong>Preparación</strong><p>Gomitas: base de jugo + gelatina + miel + valeriana.</p></div>
+        <div class="step"><strong>Maceración</strong><p>Ambientador: cáscara + alcohol, 5 días en oscuro.</p></div>
+        <div class="step"><strong>Envasado</strong><p>Presentaciones limpias y listas para mostrar.</p></div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         GALERÍA / MOCKUPS
+    =========================================== -->
+    <section id="galeria" class="card">
+      <h3 class="section-title">Galería del proyecto</h3>
+      <p class="dim">Espacio para fotos del proceso y los productos terminados.</p>
+      <div class="gallery" style="margin-top:10px">
+        <div class="mock">Foto: maracuyá fresco</div>
+        <div class="mock">Foto: mezcla gomitas</div>
+        <div class="mock">Foto: moldes</div>
+        <div class="mock">Foto: ambientador</div>
+        <div class="mock">Foto: equipo</div>
+        <div class="mock">Foto: presentación</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         RESULTADOS / MENSAJES CLAVE
+    =========================================== -->
+    <section class="band result" aria-label="Resultados">
+      <div>
+        <h3 class="section-title">Resultados claros</h3>
+        <ul class="dim">
+          <li>Gomitas con buen agarre y sabor natural.</li>
+          <li>Ambientador con aroma tropical y notas cítricas.</li>
+          <li>Uso completo de la fruta: menos residuos.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="friendly">
+          <div class="mini"><h4>Presentación</h4><p>Listo para feria y jurado.</p></div>
+          <div class="mini"><h4>Claridad</h4><p>Datos y pasos fáciles de seguir.</p></div>
+          <div class="mini"><h4>Impacto</h4><p>Mensaje de bienestar y ambiente.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ
+    =========================================== -->
+    <section id="faq" class="card faq">
+      <h3 class="section-title">Preguntas rápidas</h3>
+      <details>
+        <summary>¿Las gomitas llevan azúcar?</summary>
+        <p>No añadimos azúcar extra. Solo un toque de miel (12 g) para suavizar el sabor.</p>
+      </details>
+      <details>
+        <summary>¿Qué hace la valeriana?</summary>
+        <p>Aporta un efecto relajante suave. Se usan gotas, que se integran bien en la mezcla.</p>
+      </details>
+      <details>
+        <summary>¿El ambientador es seguro?</summary>
+        <p>Es para uso ambiental. No ingerir ni aplicar en piel. Mantener fuera del alcance de niños y mascotas.</p>
+      </details>
+      <details>
+        <summary>¿Por qué usar la cáscara?</summary>
+        <p>Porque conserva aroma y aceites. Así aprovechamos la fruta completa.</p>
+      </details>
+    </section>
+
+    <!-- ==========================================
+         CONTACTO / CREDITOS
+    =========================================== -->
+    <section class="card">
+      <h3 class="section-title">Equipo</h3>
+      <div class="friendly">
+        <div class="mini"><h4>Autores</h4><p>Emanuel Bedoya Guzmán & Daniel Mathias Rojas Galindo</p></div>
+        <div class="mini"><h4>Institución</h4><p>Instituto Tecnológico Calarcá • 2025</p></div>
+        <div class="mini"><h4>Curso</h4><p>Química 10-2</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Proyecto presentado con orgullo — amigable a la vista y listo para jurado.</p>
+    </footer>
+  </div>
+
+  <!-- ==========================================
+       JS: Tabs y pequeñas interacciones
+  =========================================== -->
+  <script>
+    // Tabs accesibles y simples
+    const buttons = document.querySelectorAll('.tab-btn');
+    const panels = {
+      food: document.getElementById('panel-food'),
+      nonfood: document.getElementById('panel-nonfood')
+    };
+    buttons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const key = btn.dataset.tab;
+        buttons.forEach(b=>b.setAttribute('aria-selected', String(b===btn)));
+        Object.entries(panels).forEach(([k,p])=>p.setAttribute('aria-hidden', String(k!==key)));
+      })
+    });
+
+    // Suavizar anclas del topbar en navegadores sin smooth nativo
+    document.querySelectorAll('.nav a').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
