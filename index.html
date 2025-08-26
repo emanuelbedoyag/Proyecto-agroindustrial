@@ -158,35 +158,38 @@
     }
 
     /* -----------------------------
-       FIX RESPONSIVE EN MÓVIL
-    ------------------------------*/
-    @media (max-width: 600px) {
-      .wrap { padding: 16px 12px 40px; }
+   RESPONSIVE OPTIMIZADO MÓVIL
+------------------------------*/
+@media (max-width: 600px) {
+  .wrap { padding: 16px 12px 40px; }
 
-      .hero { grid-template-columns: 1fr; }
-      .kpis { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: 1fr; }
 
-      .grid { grid-template-columns: 1fr !important; }
+  .grid { grid-template-columns: 1fr !important; }
 
-      .gallery img {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: cover;
-        border-radius: 12px;
-      }
+  /* ✅ Ajuste imágenes: no deformar */
+  .gallery img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
 
-      .mock {
-        height: auto !important;
-        padding: 6px;
-      }
+  /* ✅ Mockups mantienen tamaño */
+  .mock {
+    height: 160px;
+    padding: 0;
+  }
 
-      .nav {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scrollbar-width: none;
-      }
-      .nav::-webkit-scrollbar { display: none; }
-    }
+  /* ✅ Menú desplazable en móviles */
+  .nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+}
+
   </style>
 </head>
 
